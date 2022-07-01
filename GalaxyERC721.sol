@@ -1145,16 +1145,16 @@ contract Collection is ERC721Enumerable, Ownable {
     using Strings for uint256;
     string public baseURI;
     string public baseExtension = ".json";
-        uint256 public cost = 0.001 ether;
-        uint256 public presaleCost = 0.0005 ether;
-    uint256 public maxSupply = 5;
-    uint256 public maxMintAmount = 2;
+        uint256 public cost = 0.1 ether;
+        uint256 public presaleCost = 0.05 ether;
+    uint256 public maxSupply = 10000;
+    uint256 public maxMintAmount = 30;
     bool public paused = false;
     mapping(address => bool) public whitelisted;
     mapping(address => bool) public presaleWallets;
 
 
-    constructor() ERC721("GAlaxyNFT", "GNFT") {}
+    constructor() ERC721("GalaxyNFT", "GNFT") {}
         // internal
         function _baseURI() internal view virtual override returns (string memory) {
         return "ipfs://QmRwFatc8WJAHKmG1kfNy7RNbEsJ5Fpmnm6oTLFwt9cBrk/";
@@ -1225,6 +1225,10 @@ contract Collection is ERC721Enumerable, Ownable {
         presaleCost = _newCost;
         }
         
+        function setCost(uint256 _newCost) public onlyOwner {
+        cost = _newCost;
+        }
+
         function setBaseURI(string memory _newBaseURI) public onlyOwner() {
             baseURI = _newBaseURI;
         }
